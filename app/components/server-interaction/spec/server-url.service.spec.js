@@ -11,11 +11,13 @@ describe('Factory: interceptor urlInterceptorFct', () => {
   beforeEach(angular.mock.module(serverModule, ($httpProvider, $provide) => {
     $provide.constant('baseApiUrl', baseApiUrl);
     $httpProviderIt = $httpProvider;
-}))
-beforeEach(inject(_urlInterceptorFct_ => {
+  }));
+
+  beforeEach(inject(_urlInterceptorFct_ => {
     urlInterceptorFct = _urlInterceptorFct_;
-}))
-describe('#request', () => {
+  }));
+
+  describe('#request', () => {
     it('should properly change request config', () => {
       const config = {
         url: '{api}/bar'
@@ -24,9 +26,9 @@ describe('#request', () => {
 
       expect(result.url).toBe(`${ baseApiUrl }/bar`);
       expect(config.url).toBe(`${ baseApiUrl }/bar`);
-}
-)
-it('should properly change request config', () => {
+    });
+
+    it('should properly change request config', () => {
       const url = 'very/long/api/url?param=true';
       const config = {
         url: `{api}/${ url }`
@@ -35,9 +37,10 @@ it('should properly change request config', () => {
 
       expect(result.url).toBe(`${ baseApiUrl }/${ url }`);
       expect(config.url).toBe(`${ baseApiUrl }/${ url }`);
-})
-it('should add interceptor', () => {
+    });
+
+    it('should add interceptor', () => {
       expect($httpProviderIt.interceptors).toContain('urlInterceptorFct');
-})
-})
-})
+    });
+  });
+});

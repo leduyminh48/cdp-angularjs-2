@@ -47,6 +47,7 @@ export default /*@ngInject*/$resource => {
     const defaultParams = {};
 
     return Object.assign(defaultParams, options);
-  }
+  };
+
   return Videos;
 };

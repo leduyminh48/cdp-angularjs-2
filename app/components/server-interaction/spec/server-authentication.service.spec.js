@@ -10,11 +10,11 @@ describe('Factory: interceptor authInterceptorFct', () => {
   beforeEach(angular.mock.module(serverModule, ($httpProvider, $provide) => {
     $httpProviderIt = $httpProvider;
     $provide.constant('baseApiUrl', 'foo-bar');
-}))
-beforeEach(inject(_authInterceptorFct_ => {
+  }));
+  beforeEach(inject(_authInterceptorFct_ => {
     authInterceptorFct = _authInterceptorFct_;
-}))
-it('should not add auth for templates call', () => {
+  }));
+  it('should not add auth for templates call', () => {
     const config = {
       url    : 'foo.html',
       headers: {}
@@ -22,8 +22,8 @@ it('should not add auth for templates call', () => {
     const result = authInterceptorFct.request(config);
 
     expect(result.withCredentials).toBeUndefined();
-})
-it('should not add auth for not server api call', () => {
+  });
+  it('should not add auth for not server api call', () => {
     const config = {
       url    : 'some-server/foo-bar/url.json',
       headers: {}
@@ -31,8 +31,8 @@ it('should not add auth for not server api call', () => {
     const result = authInterceptorFct.request(config);
 
     expect(result.withCredentials).toBeUndefined();
-})
-it('should add auth for server api call', () => {
+  });
+  it('should add auth for server api call', () => {
     const config = {
       url    : 'foo-bar/url.json',
       headers: {}
@@ -40,8 +40,8 @@ it('should add auth for server api call', () => {
     const result = authInterceptorFct.request(config);
 
     expect(result.withCredentials).toBeTruthy();
-})
-it('should add interceptor', () => {
+  });
+  it('should add interceptor', () => {
     expect($httpProviderIt.interceptors).toContain('authInterceptorFct');
-})
-})
+  });
+});

@@ -16,9 +16,9 @@ export default /*@ngInject*/ function ViewRequestsListFct(osmModalsFct, Requests
           RequestsFct.executeMock(action, requestId).then(() => {
             callback();
             toastr.success(this.getTextToastr({ requestId, action }));
-    })
-    }
-    })
+          });
+        }
+      });
     },
 
     confirmActionMultiple({ requests, action, title, callback = angular.noop }) {
@@ -31,9 +31,9 @@ export default /*@ngInject*/ function ViewRequestsListFct(osmModalsFct, Requests
           RequestsFct.executeMultipleMock(action, requests).then(() => {
             callback();
             toastr.success(this.getTextToastrMultiple({ action, length }));
-    })
-    }
-    })
+          });
+        }
+      });
     },
 
     /**

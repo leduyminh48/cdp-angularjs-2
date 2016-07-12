@@ -133,9 +133,9 @@ export default /*@ngInject*/$injector => {
     confirm(settings = {}) {
       const { backdrop = 'static' } = settings;
       const scope = this.createChildScopeFrom(angular.extend({
-        title       : 'Are you sure?',
-        templateUrl : confirmTpl,
-        textConfirm : 'Continue?'
+        title      : 'Are you sure?',
+        templateUrl: confirmTpl,
+        textConfirm: 'Continue?'
       }, settings));
 
       const finalSettings = {
@@ -169,7 +169,7 @@ export default /*@ngInject*/$injector => {
         .then(scope.$close)
         .catch(() => {
           modalInstance.isLoading = false;
-    })
+        });
     },
 
 
@@ -239,4 +239,4 @@ export default /*@ngInject*/$injector => {
       return scope[modalCtrlAs];
     }
   };
-}
+};

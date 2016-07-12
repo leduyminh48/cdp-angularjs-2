@@ -10,8 +10,8 @@ describe('Provider: routerStatusFct', () => {
 
   beforeEach(inject(_routerStatusFct_ => {
     routerStatusFct = _routerStatusFct_;
-}))
-it('should be defined', () => {
+  }));
+  it('should be defined', () => {
     expect(routerStatusFct).toBeDefined();
-})
-})
+  });
+});

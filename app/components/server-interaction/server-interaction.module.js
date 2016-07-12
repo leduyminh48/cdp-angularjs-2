@@ -37,7 +37,7 @@ export default angular.module('osmServerInteraction', [
     $httpProvider.useLegacyPromiseExtensions(false);
   })
   .run(/*@ngInject*/($cookies, routerStatusFct) => {
-    if (!routerStatusFct.isLocalRun();) {
+    if (!routerStatusFct.isLocalRun()) {
       return;
     }
 
@@ -59,6 +59,6 @@ export default angular.module('osmServerInteraction', [
       }
 
       return messages[code](params);
-}
-})
+    };
+  })
   .name;

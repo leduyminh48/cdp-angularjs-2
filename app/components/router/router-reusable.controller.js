@@ -12,8 +12,8 @@ export default class {
    * 'reloadOnSearch': true  option of the state definition object should be used
    */
   constructor($injector, $scope) {
-    this.$scope    = $scope;
-    this.$state    = $injector.get('$state');
+    this.$scope = $scope;
+    this.$state = $injector.get('$state');
     this.initRouterReuse();
 
     this.defaultParameters = {};
@@ -39,10 +39,7 @@ export default class {
         params[key] = angular.isDefined(stateParams[key]) ? stateParams[key] : this.defaultParameters[key];
 
         return params;
-  },
-    {
-    }
-  )
+      }, {});
   }
 
 
@@ -56,10 +53,10 @@ export default class {
    */
   initRouterReuse() {
     const destroyRouterChangeHandler = this.$scope.$on('$stateChangeSuccess', (...args) =>
-    this.$routerCanReuse(...args
-  ))
+      this.$routerCanReuse(...args));
+
     this.$scope.$on('$destroy', destroyRouterChangeHandler);
-  };;
+  }
 
 
   /**

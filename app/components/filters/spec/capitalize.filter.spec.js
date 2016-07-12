@@ -10,15 +10,15 @@ describe('Filters: capitalize', () => {
 
   beforeEach(inject(_capitalizeFilter_ => {
     capitalizeFilter = _capitalizeFilter_;
-}))
-it('should capitilize strings', () => {
+  }));
+  it('should capitilize strings', () => {
     const result = capitalizeFilter('some String');
 
     expect(result).toBe('Some String');
-})
-it('should not throw for an empty value', () => {
+  });
+  it('should not throw for an empty value', () => {
     const caller = capitalizeFilter.bind(null, '');
 
     expect(caller).not.toThrow();
-})
-})
+  });
+});

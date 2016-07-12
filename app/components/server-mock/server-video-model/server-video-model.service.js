@@ -17,27 +17,24 @@ export default class ServerVideos {
   }
 
   findOne(id) {
-    return this.data.find(el = > el.id === +id
-  )
-  };
+    return this.data.find(el => el.id === +id);
+  }
 
   findIndexOne(id) {
-    return this.data.findIndex(el = > el.id === +id
-  )
-  };
+    return this.data.findIndex(el => el.id === +id);
+  }
 
   findAll(option) {
     const key = Object.keys(option)[0];
 
-    return this.data.filter(video = > video[key].indexOf(option[key])
-  )
-  };
+    return this.data.filter(video => video[key].indexOf(option[key]));
+  }
 
   newId() {
-    const ids = this.data.map(video = > video.id
-  )
+    const ids = this.data.map(video => video.id);
+
     return Math.max(...ids) + 1;
-  };;
+  }
 
   addOne(options) {
     const newVideo = Object.assign(angular.fromJson(options), {

@@ -113,7 +113,7 @@ const webpackConfig = module.exports = {
     new webpack.NoErrorsPlugin(),
     new ExtractTextPlugin('[name].css')
   ],
-  postcss: () => [autoprefixer];
+  postcss: () => [autoprefixer]
 }
 
 // NOTE: this is a temporary workaround. I don't know how to get Karma

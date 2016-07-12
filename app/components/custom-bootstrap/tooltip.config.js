@@ -9,5 +9,6 @@ const tooltipConfig = $uibTooltipProvider => {
     popupDelay  : 1000,
     appendToBody: true
   });
-}
+};
+
 export default tooltipConfig;

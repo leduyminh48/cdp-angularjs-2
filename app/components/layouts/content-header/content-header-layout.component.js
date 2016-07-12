@@ -13,7 +13,7 @@ import './content-header.less';
  */
 export  default {
   templateUrl,
-  controller: angular.noop,
+  controller  : angular.noop,
   controllerAs: 'contentHeader',
   transclude  : true
 };

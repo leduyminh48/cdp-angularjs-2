@@ -13,37 +13,36 @@ describe('Service: osmModals', () => {
       .callFake(params => {
         modalParams = params;
       })
-}
-beforeEach(angular.mock.module(module, $provide => {
+  };
+
+  beforeEach(angular.mock.module(module, $provide => {
     $provide.constant('$uibModal', $uibModal);
-}))
-beforeEach(inject((_osmModalsFct_, _$rootScope_) => {
+  }));
+  beforeEach(inject((_osmModalsFct_, _$rootScope_) => {
     osmModalsFct = _osmModalsFct_;
     scope        = _$rootScope_.$new();
     scope.$apply();
-}))
-afterEach(() => {
+  }));
+  afterEach(() => {
     $uibModal.open.calls.reset();
-})
-describe('Open', () => {
+  });
+  describe('Open', () => {
     beforeEach(() => {
       osmModalsFct.open();
-}
-)
-it('should call $uibModal open method', () => {
+    });
+    it('should call $uibModal open method', () => {
       expect($uibModal.open).toHaveBeenCalled();
-})
-it('should set modal bindings into an object on the scope', () => {
+    });
+    it('should set modal bindings into an object on the scope', () => {
       expect(modalParams.scope.osmModal).toEqual(jasmine.any(Object));
-})
-})
-describe('Confirmation', () => {
+    });
+  });
+  describe('Confirmation', () => {
     beforeEach(() => {
       osmModalsFct.confirm();
-}
-)
-it('should call $uibModal open method', () => {
+    });
+    it('should call $uibModal open method', () => {
       expect($uibModal.open).toHaveBeenCalled();
-})
-})
-})
+    });
+  });
+});

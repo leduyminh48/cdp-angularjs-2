@@ -12,12 +12,12 @@ describe('Model Factory: EmployeesFct', () => {
   beforeEach(inject($injector => {
     $httpBackend = $injector.get('$httpBackend');
     model        = $injector.get('EmployeesFct');
-}))
-afterEach(() => {
+  }));
+  afterEach(() => {
     $httpBackend.verifyNoOutstandingExpectation();
     $httpBackend.verifyNoOutstandingRequest();
-})
-describe('#query', () => {
+  });
+  describe('#query', () => {
     it('should perform right query() request', () => {
       $httpBackend
         .expectGET('{api}/employees')
@@ -25,23 +25,22 @@ describe('#query', () => {
 
       model.query();
       $httpBackend.flush();
-}
-)
-it('should perform right request with params on search()', () => {
+    });
+    it('should perform right request with params on search()', () => {
       $httpBackend
         .expectGET(`{api}/employees?name=${ searchString }`)
         .respond(200, '');
 
       model.search(searchString);
       $httpBackend.flush();
-})
-})
-it('should perform right request with params on searchAccessible', () => {
+    });
+  });
+  it('should perform right request with params on searchAccessible', () => {
     $httpBackend
       .expectGET(`{api}/employees/accessible?name=${ searchString }`)
       .respond(200, '');
 
     model.searchAccessible(searchString);
     $httpBackend.flush();
-})
-})
+  });
+});

@@ -12,4 +12,4 @@ export default  () => minutes => {
 
   return hours ?
     `${ hours } hours ${ minutes - hours * 60 } minutes` : `${ minutes } minutes`;
-}
+};

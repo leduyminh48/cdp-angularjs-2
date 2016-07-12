@@ -16,7 +16,7 @@ export default /*@ngInject*/$injector => {
   class CurrentUser {
     constructor() {
       this.Employees = $injector.get('EmployeesFct');
-      this.Units     = $injector.get('UnitsFct');
+      this.Places    = $injector.get('PlacesFct');
       this.$q        = $injector.get('$q');
     }
 
@@ -31,17 +31,34 @@ export default /*@ngInject*/$injector => {
      * @description Init user info and returns promise for it loading
      */
     init() {
-      this.info  = this.Employees.queryMockCurrent();
-      this.place = this.Units.getCurrent();
+      if (this.info && this.place) {
+        return this.loading;
+      }
+
+      this.info  = this.Employees.getCurrent();
+      this.place = this.Places.getCurrent();
 
       this.loading = this.$q.all([
         this.info.$promise,
         this.place.$promise
-      ]);
+      ]).then(() => this);
 
-      return this.loading.then(() = > this
-    )
-    };
+      return this.loading;
+    }
+
+
+    /**
+     * @ngdoc method
+     * @methodOf CurrentUser
+     * @name CurrentUser#isLoggedIn
+     *
+     * @returns {boolean} True if logged in
+     *
+     * @description Returns whether uer is logged in
+     */
+    isLoggedIn() {
+      return !!this.info.fullName;
+    }
 
 
     /**
@@ -56,22 +73,6 @@ export default /*@ngInject*/$injector => {
     getFullName() {
       return this.info.fullName;
     }
-
-
-    /**
-     * @ngdoc method
-     * @methodOf CurrentUser
-     * @name CurrentUser#
-     *
-     * @returns {*} Unit path
-     *
-     * @description Return unit path for currently logged in user
-     */
-    getUnitPath() {
-      return this.place.unitPath
-          .map(unit = > unit.name
-    ) //todo: Need to use some method to get whole place path
-    };
 
 
     /**
@@ -100,7 +101,61 @@ export default /*@ngInject*/$injector => {
     getAvatarUrl() {
       return this.info.pictureName;
     }
+
+
+    /**
+     * @ngdoc method
+     * @methodOf CurrentUser
+     * @name CurrentUser#getEmployee
+     *
+     * @returns {Employee} DTO of the current user
+     *
+     * @description Returns Employee DTO of currently logged in user
+     */
+    getEmployee() {
+      return this.info;
+    }
+
+
+    /**
+     * @ngdoc method
+     * @methodOf CurrentUser
+     * @name CurrentUser#getPlace
+     *
+     * @returns
+     *
+     * @description
+     */
+    getPlace() {
+      return this.place;
+    }
+
+    /**
+     * @ngdoc method
+     * @methodOf CurrentUser
+     * @name CurrentUser#getFloor
+     *
+     * @returns
+     *
+     * @description
+     */
+    getStrFloor() {
+      return this.place.getPathItemString('FLOOR');
+    }
+
+    /**
+     * @ngdoc method
+     * @methodOf CurrentUser
+     * @name CurrentUser#getArea
+     *
+     * @returns
+     *
+     * @description
+     */
+    getStrArea() {
+      return this.place.getPathItemString('AREA');
+    }
   }
 
   return new CurrentUser();
-}
+};

@@ -13,4 +13,4 @@ export default /*@ngInject*/function () {
   this.$get = () => ({
     isLocalRun
   });
-};;
+}

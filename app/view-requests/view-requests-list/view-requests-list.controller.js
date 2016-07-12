@@ -46,7 +46,7 @@ export default class extends RouterReusableCtrl {
   loadData() {
     this.VideosFct.query().$promise.then(data => {
       this.data = data;
-  })
+    });
   }
 
   goToDetails(id) {
@@ -56,6 +56,6 @@ export default class extends RouterReusableCtrl {
   remove(id) {
     this.VideosFct.delete({ id }).$promise.then(() => {
       this.loadData();
-  })
+    });
   }
 }

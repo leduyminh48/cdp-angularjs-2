@@ -18,7 +18,6 @@ export default () => {
 
   return input =>
     parsers.reduce((input, parser) =>
-        input.replace(parser.regexp, parser.replacer),
-      input.toString()
-)
-};;
+      input.replace(parser.regexp, parser.replacer),
+      input.toString());
+};

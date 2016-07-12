@@ -12,140 +12,152 @@ describe('Factory: interceptor errorInterceptorFct', () => {
   };
 
   const errorMessageFct = jasmine.createSpy('errorMessageFct').and.returnValue('Alarm!');
-  const statesFactory   = {
-    goLogin: jasmine.createSpy('goLogin')
+  const routerFct       = {
+    exit: jasmine.createSpy('exit')
   };
 
   beforeEach(angular.mock.module(serverModule, ($httpProvider, $provide) => {
     $provide.constant('toastr', toastr);
     $provide.constant('errorMessageFct', errorMessageFct);
-    $provide.constant('statesFactory', statesFactory);
+    $provide.constant('routerFct', routerFct);
+    $provide.constant('redirectPortHeaderConst', 'redirectPortHeaderConst');
+    $provide.constant('redirectPathHeaderConst', 'redirectPathHeaderConst');
+    $provide.constant('routerStatusFct', {
+      isLocalRun() {
+        return false;
+      }
+    });
     $provide.constant('$state', $state);
     $httpProviderIt = $httpProvider;
-}))
-beforeEach(inject((_$rootScope_, _errorInterceptorFct_) => {
+  }));
+
+  beforeEach(inject((_$rootScope_, _errorInterceptorFct_) => {
     errorInterceptorFct = _errorInterceptorFct_;
     $rootScope          = _$rootScope_;
-}))
-afterEach(() => {
-    statesFactory.goLogin.calls.reset();
+  }));
+
+  afterEach(() => {
+    routerFct.exit.calls.reset();
     toastr.error.calls.reset();
     errorMessageFct.calls.reset();
-})
-const testStatus = (config, errorCode, translationParams, goLogin, title) => {
+  });
+
+
+  const testStatus = (config, errorCode, translationParams, goLogin, title) => {
     let result;
 
     beforeEach(() => {
       result = errorInterceptorFct.responseError(config);
-})
-  if (translationParams) {
+    });
+
+
+    if (translationParams) {
       it('should call translation filter with params', () => {
         expect(errorMessageFct).toHaveBeenCalledWith(errorCode, translationParams);
-    })
+      });
     } else {
       it('should call translation filter', () => {
         expect(errorMessageFct).toHaveBeenCalledWith(errorCode);
-    })
+      });
     }
 
     if (goLogin) {
       it('should jump to login page', () => {
-        expect(statesFactory.goLogin).toHaveBeenCalledWith(true);
-    })
-    }; else {
+        const param = angular.isObject(goLogin) && goLogin || null;
+
+        expect(routerFct.exit).toHaveBeenCalledWith(param);
+      });
+    } else {
       it('should not jump to login page', () => {
-        expect(statesFactory.goLogin).not.toHaveBeenCalled();
-    })
-    };
+        expect(routerFct.exit).not.toHaveBeenCalled();
+      });
+    }
 
     if (title) {
       it('should show toastr title', () => {
         expect(toastr.error).toHaveBeenCalledWith('Alarm!', title);
-    })
-    }; else {
+      });
+    } else {
       it('should show toastr error with the result of it', () => {
         expect(toastr.error).toHaveBeenCalledWith('Alarm!');
-    })
-    };
+      });
+    }
 
     it('should return rejected promise', done => {
       result.catch(error => {
         expect(error).toEqual({ status: config.status });
         done();
-})
-  $rootScope.$apply();
-})
-}
-describe('-1 status', () => {
+      });
+
+      $rootScope.$apply();
+    });
+  };
+
+  describe('-1 status', () => {
     let result;
 
     beforeEach(() => {
       result = errorInterceptorFct.responseError({ status: -1 });
-})
-it('should return rejected promise', done => {
+    });
+
+    it('should return rejected promise', done => {
       result.catch(error => {
         expect(error).toEqual('Request was cancelled');
         done();
-})
-$rootScope.$apply();
-})
-it('should not call translate', () => {
+      });
+
+      $rootScope.$apply();
+    });
+
+    it('should not call translate', () => {
       expect(errorMessageFct).not.toHaveBeenCalled();
-})
-it('should not call toastr.error', () => {
+    });
+
+    it('should not call toastr.error', () => {
       expect(toastr.error).not.toHaveBeenCalled();
-})
-it('should not jump to login page', () => {
-      expect(statesFactory.goLogin).not.toHaveBeenCalled();
-})
-})
-describe('400 error', () => {
-    testStatus({ status: 400 }, 'ERR_VALIDATION', null, true
-)
-})
-describe('400 error during login', () => {
-    beforeEach(() => {
-      $state.current = {
-        name: 'login'
-      };
-}
-)
-afterEach(() => {
-      $state.current = {};
-})
-testStatus({ status: 400 }, 'ERR_VALIDATION');
-})
-describe('401 error', () => {
-    testStatus({ status: 401 }, 'ERR_AUTHENTICATION', null, true
-)
-})
-describe('403 error', () => {
-    testStatus({ status: 403, url: 'foo' }, 'ERR_ACCESS',;
-{
-  'foo'
-}
-)
-})
-describe('404 error', () => {
-    testStatus({ status: 404, url: 'bar' }, 'ERR_NOT_FOUND',;
-{
-  'bar'
-}
-)
-})
-describe('500 error', () => {
+    });
+
+    it('should not jump to login page', () => {
+      expect(routerFct.exit).not.toHaveBeenCalled();
+    });
+  });
+
+
+  describe('400 error during login', () => {
+    testStatus({ status: 400 }, 'ERR_VALIDATION');
+  });
+
+
+  describe('401 error with headers', () => {
+    testStatus({ status: 401, headers: name => name }, 'ERR_AUTHENTICATION', null, {
+      port: 'redirectPortHeaderConst',
+      path: 'redirectPathHeaderConst'
+    });
+  });
+
+
+  describe('403 error', () => {
+    testStatus({ status: 403, url: 'foo' }, 'ERR_ACCESS', { resource: 'foo' });
+  });
+
+
+  describe('404 error', () => {
+    testStatus({ status: 404, url: 'bar' }, 'ERR_NOT_FOUND', { resource: 'bar' });
+  });
+
+
+  describe('500 error', () => {
     testStatus({
-      status: 500,
+      status : 500,
       details: 'foo',
       summary: 'bar'
-    }, 'ERR_APPLICATION',; {
-      'foo'
-}
-,
-false, 'bar'
-)
-})
-it('should add interceptor', () => {
+    }, 'ERR_APPLICATION', {
+      details: 'foo'
+    }, false, 'bar');
+  });
+
+
+  it('should add interceptor', () => {
     expect($httpProviderIt.interceptors).toContain('errorInterceptorFct');
-})
-})
+  });
+});

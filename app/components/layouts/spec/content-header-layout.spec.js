@@ -12,10 +12,10 @@ describe('Component: osm-content-header', () => {
   beforeEach(inject((_$componentController_, _$rootScope_) => {
     $componentController = _$componentController_;
     scope                = _$rootScope_.$new();
-}))
-it('should define component', () => {
+  }));
+  it('should define component', () => {
     const instance = $componentController('osmContentHeader', scope);
 
     expect(instance).toBeDefined();
-})
-})
+  });
+});
