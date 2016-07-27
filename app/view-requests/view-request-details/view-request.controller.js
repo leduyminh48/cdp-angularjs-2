@@ -20,7 +20,7 @@ export default class ViewRequestCtrl extends RouterReusableCtrl {
       this.isNew = false;
       this.VideosFct.get({ id }).$promise.then(video => {
         video.createDate = new Date(video.createDate);
-        this.video = video;
+        this.video       = video;
       });
     }
   }
@@ -31,13 +31,21 @@ export default class ViewRequestCtrl extends RouterReusableCtrl {
 
   onSubmit() {
     if (this.isNew) {
-      this.VideosFct.save({}, this.video).$promise.then(data => {
-        this.toastr.success(`"${ data.title }" with new id ${ data.id }`, 'Successfully added new video');
-      });
+      this.addNewVideo();
     } else {
-      this.VideosFct.update({ id: this.video.id }, this.video).$promise.then(() => {
-        this.toastr.success(this.video.title, 'Successfully updated video');
-      });
+      this.updateVideo();
     }
+  }
+
+  addNewVideo() {
+    this.VideosFct.save({}, this.video).$promise.then(data => {
+      this.toastr.success(`"${ data.title }" with new id ${ data.id }`, 'Successfully added new video');
+    });
+  }
+
+  updateVideo() {
+    this.VideosFct.update({ id: this.video.id }, this.video).$promise.then(() => {
+      this.toastr.success(this.video.title, 'Successfully updated video');
+    });
   }
 }

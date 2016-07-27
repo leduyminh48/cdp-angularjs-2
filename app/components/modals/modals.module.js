@@ -1,5 +1,4 @@
 import angular from 'angular';
-import  customBootstrap from '../custom-bootstrap';
 
 import modalsService from './modals.service';
 
@@ -10,8 +9,6 @@ import modalsService from './modals.service';
  * @description
  * Module for modals
  */
-export default angular.module('osmModals', [ //eslint-disable-line angular/file-name
-  customBootstrap
-])
+export default angular.module('osmModals', [])
   .factory('osmModalsFct', modalsService)
   .name;

@@ -145,7 +145,7 @@ if (devTools) {
     devServer: {
       contentBase       : `./${ dstPath }`,
       historyApiFallback: true,
-      port              : 9500,
+      port              : 8001,
       proxy             : {
         '/api/*': {
           target: 'http://ecsd001000d7.epam.com:8080',
