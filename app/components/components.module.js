@@ -12,7 +12,6 @@ import models             from './models';
 import filters            from './filters';
 import layouts            from './layouts';
 import logout             from './logout';
-import durationFilter     from './duration';
 import serverMock         from './server-mock';
 
 export default angular.module('osmComponents', [
@@ -28,7 +27,6 @@ export default angular.module('osmComponents', [
 
   modals,
   layouts,
-  logout,
-  durationFilter
+  logout
 ])
   .name;
