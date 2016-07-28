@@ -1,7 +1,8 @@
 import angular    from 'angular';
 
-import serverMockFct  from './server-mock.service';
-import serverVideosFct  from './server-video-model/server-video-model.module';
+import serverMockFct         from './server-mock.service';
+import serverVideo           from './server-video-model';
+import serverAuthentication  from './server-authentication-model';
 
 /**
  * @ngdoc overview
@@ -12,7 +13,8 @@ import serverVideosFct  from './server-video-model/server-video-model.module';
  */
 
 export default angular.module('serverMock', [
-  serverVideosFct
+  serverVideo,
+  serverAuthentication
 ])
   .factory('serverMockFct', serverMockFct)
   .name;

@@ -6,7 +6,6 @@ import angular from 'angular';
  * @description Returns Employee model
  *
  */
-
 export default class ServerVideos {
   constructor(data) {
     this.data = data;

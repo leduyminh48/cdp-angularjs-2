@@ -2,7 +2,7 @@ import angular from 'angular';
 
 import models from '../models';
 
-import CurrentUser from './current-user.service';
+import AuthenticationFct from './authentication.service';
 
 /**
  * @ngdoc module
@@ -13,5 +13,5 @@ import CurrentUser from './current-user.service';
 export default angular.module('osmAuthentication', [ //eslint-disable-line angular/file-name
   models
 ])
-  .factory('currentUserFct', CurrentUser)
+  .factory('authenticationFct', AuthenticationFct)
   .name;

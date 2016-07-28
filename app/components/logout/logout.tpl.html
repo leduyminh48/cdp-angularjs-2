@@ -1,10 +1,2 @@
-<div class="oui-telescope" uib-dropdown>
-  <a class="oui-dropdown__link" uib-dropdown-toggle><img src="../images/icons/defaultAvatar.svg" class="oui-telescope__photo" /></a>
-  <ul class="dropdown-menu oui-telescope__dropdown" uib-dropdown-menu>
-    <li>
-      <a>
-        Log out
-      </a>
-    </li>
-  </ul>
-</div>
+<p>Hi, {{ view.getCurrentUser().name }}</p>
+<button class="btn btn-success">Logout</button>

@@ -10,7 +10,7 @@ import ServerVideosData from './server-video-model.const';
  * @description
  * Module for server videos models
  */
-export default angular.module('osmServerVideos', [ //eslint-disable-line angular/file-name
+export default angular.module('serverVideos', [ //eslint-disable-line angular/file-name
   ngResource
 ])
   .constant('ServerVideosDataConst', ServerVideosData)

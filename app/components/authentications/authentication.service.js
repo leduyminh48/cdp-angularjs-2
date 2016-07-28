@@ -9,7 +9,8 @@ import angular from 'angular';
 export default /*@ngInject*/$injector => {
   const $http    = $injector.get('$http');
   const $window  = $injector.get('$window');
-  const loginUrl = '/login';
+  const $state  = $injector.get('$state');
+  const loginUrl = '/api/login';
 
   return {
     login(userName, password) {
@@ -21,14 +22,17 @@ export default /*@ngInject*/$injector => {
           password
         }
       }).then(res => {
-        $window.localStorage.setItem('currentUser', angular.toJson(res.userInfo));
-        $window.localStorage.setItem('sessionHashKey', res.hashKey);
+        $window.localStorage.setItem('currentUser', angular.toJson(res.data.userInfo));
+        $window.localStorage.setItem('sessionHashKey', res.data.hashKey);
+        $window.localStorage.setItem('login', userName);
+        $state.go('main.videos.list');
       });
     },
 
     logout() {
       $window.localStorage.removeItem('currentUser');
       $window.localStorage.removeItem('sessionHashKey');
+      $state.go('main.login');
     },
 
     getCurrentUser() {

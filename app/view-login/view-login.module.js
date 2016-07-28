@@ -1,6 +1,7 @@
 import angular   from 'angular';
 
 import loginComponent from './view-login.component';
+import components from '../components';
 
 
 /**
@@ -10,9 +11,11 @@ import loginComponent from './view-login.component';
  * @description
  * Hold component for generating login page
  */
-export default angular.module('cdpViewLogin', [])
+export default angular.module('cdpViewLogin', [
+  components
+])
   .config(/*@ngInject*/$stateProvider => {
     $stateProvider
-      .state('login', loginComponent);
+      .state('main.login', loginComponent);
   })
   .name;

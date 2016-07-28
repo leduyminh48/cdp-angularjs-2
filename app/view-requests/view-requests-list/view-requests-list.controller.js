@@ -12,8 +12,9 @@ export default class extends RouterReusableCtrl {
   constructor($injector, $scope) {
     super($injector, $scope);
 
-    this.VideosFct = $injector.get('VideosFct');
-    this.$log      = $injector.get('$log');
+    this.VideosFct         = $injector.get('VideosFct');
+    this.$log              = $injector.get('$log');
+    this.authenticationFct = $injector.get('authenticationFct');
 
     this.$routerOnActivate();
   }

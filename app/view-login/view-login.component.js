@@ -2,6 +2,11 @@ import templateUrl from './view-login.tpl.html';
 
 class MainCtrl {
   /*@ngInject*/
+  constructor($injector) {
+    this.authenticationFct = $injector.get('authenticationFct');
+  }
+
+  /*@ngInject*/
   /**
    * @ngdoc controller
    *
@@ -9,6 +14,9 @@ class MainCtrl {
    * @description
    * Controller for Main component
    */
+  login() {
+    this.authenticationFct.login(this.userName, this.password);
+  }
 }
 
 
@@ -22,9 +30,10 @@ class MainCtrl {
  * Component to render main layout
  */
 export default {
-  url       : '/login',
+  url    : '/login',
   resolve: {},
 
   templateUrl,
-  controller: MainCtrl
+  controller  : MainCtrl,
+  controllerAs: 'view'
 };
