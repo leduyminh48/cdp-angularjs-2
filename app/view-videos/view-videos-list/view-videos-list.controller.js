@@ -8,6 +8,7 @@ export default class extends RouterReusableCtrl {
     this.VideosFct         = $injector.get('VideosFct');
     this.$log              = $injector.get('$log');
     this.authenticationFct = $injector.get('authenticationFct');
+    this.modalsFct         = $injector.get('modalsFct');
 
     this.$routerOnActivate();
   }
@@ -33,8 +34,12 @@ export default class extends RouterReusableCtrl {
   }
 
   remove(id) {
-    this.VideosFct.delete({ id }).$promise.then(() => {
-      this.loadData();
+    this.modalsFct.confirm({
+      onSubmit: () => {
+        this.VideosFct.delete({ id }).$promise.then(() => {
+          this.loadData();
+        });
+      }
     });
   }
 }

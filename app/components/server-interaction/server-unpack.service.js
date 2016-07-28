@@ -17,8 +17,21 @@ export default angular.module('osmServerUnpack', [])  //eslint-disable-line angu
  * @name osmServerUnpack.unpackInterceptorFactory
  */
 /*@ngInject*/
-function unpackInterceptorFactory($injector, $q, toastr) {
+function unpackInterceptorFactory($injector, $q, $window, toastr) {
   return {
+    request(config) {
+      const userSession = $window.localStorage.getItem('sessionHashKey');
+
+      if (config.url.indexOf('login') !== -1 || config.url.indexOf('html') !== -1) {
+        return config;
+      } else if (!userSession) {
+        //Please suggest another method for goToLogin here as we cannot inject $state here
+        $window.location.assign('http://localhost:8001/app/login');
+      }
+
+      return config;
+    },
+
     response(response) {
       const errorMessage = $injector.get('errorMessageFct');
 

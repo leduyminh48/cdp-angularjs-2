@@ -1,7 +1,7 @@
 import angular          from 'angular';
 import componentsModule from './components';
 import viewMain         from './view-main';
-import viewVideos     from './view-videos';
+import viewVideos       from './view-videos';
 import viewLogin        from './view-login';
 
 angular.module('osmApp', [

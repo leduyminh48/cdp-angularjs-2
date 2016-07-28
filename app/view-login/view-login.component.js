@@ -17,6 +17,10 @@ class MainCtrl {
   login() {
     this.authenticationFct.login(this.userName, this.password);
   }
+
+  checkValidity() {
+
+  }
 }
 
 

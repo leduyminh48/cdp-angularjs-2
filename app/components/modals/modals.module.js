@@ -1,4 +1,5 @@
 import angular from 'angular';
+import angularUiBootstrap from 'angular-ui-bootstrap';
 
 import modalsService from './modals.service';
 
@@ -9,6 +10,8 @@ import modalsService from './modals.service';
  * @description
  * Module for modals
  */
-export default angular.module('osmModals', [])
-  .factory('osmModalsFct', modalsService)
+export default angular.module('modals', [
+  angularUiBootstrap
+])
+  .factory('modalsFct', modalsService)
   .name;
