@@ -1,5 +1,5 @@
-import controller  from './view-requests.controller';
-import templateUrl from './view-requests.tpl.html';
+import controller  from './view-videos.controller';
+import templateUrl from './view-videos.tpl.html';
 
 
 /**

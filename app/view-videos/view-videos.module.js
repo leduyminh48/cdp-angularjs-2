@@ -1,11 +1,11 @@
 import angular from 'angular';
 
-import viewComponent      from './view-requests.component';
+import viewComponent      from './view-videos.component';
 
-import listComponent    from './view-requests-list';
-import detailsComponent from './view-request-details';
+import listComponent    from './view-videos-list';
+import detailsComponent from './view-videos-details';
 
-import  './view-requests.less';
+import  './view-videos.less';
 
 /**
  * @ngdocs overview

@@ -2,11 +2,10 @@ import angular    from 'angular';
 import components from 'components';
 import 'angular-ui-grid/ui-grid.min';
 
-import viewComponent       from './view-requests-list.component';
-import requestModule       from '../view-request-details';
-import viewRequestListFct  from './view-request-list.service';
+import viewComponent       from './view-videos-list.component';
+import requestModule       from '../view-videos-details';
 
-import './view-requests-list.less';
+import './view-videos-list.less';
 
 /**
  * @ngdocs overview
@@ -24,6 +23,4 @@ export default angular.module('osmViewRequestsList', [ //eslint-disable-line ang
     $stateProvider
       .state('main.videos.list', viewComponent);
   })
-
-  .factory('viewRequestListFct', viewRequestListFct)
   .name;

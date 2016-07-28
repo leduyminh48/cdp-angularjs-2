@@ -1,14 +1,14 @@
 import angular          from 'angular';
 import componentsModule from './components';
 import viewMain         from './view-main';
-import viewRequests     from './view-requests';
+import viewVideos     from './view-videos';
 import viewLogin        from './view-login';
 
 angular.module('osmApp', [
   'ngMockE2E',
   componentsModule,
   viewMain,
-  viewRequests,
+  viewVideos,
   viewLogin
 ])
   .run(/*@ngInject*/serverMockFct => {

@@ -1,8 +1,8 @@
 import angular    from 'angular';
 import components from 'components';
 
-import viewComponent       from './view-request.component';
-import  './view-request.less';
+import viewComponent       from './view-videos.component';
+import  './view-videos.less';
 
 /**
  * @ngdocs overview
@@ -11,7 +11,7 @@ import  './view-request.less';
  * @description
  * Module request view
  */
-export default angular.module('osmViewRequest', [ //eslint-disable-line angular/file-name
+export default angular.module('osmViewVideos', [ //eslint-disable-line angular/file-name
   components
 ])
 

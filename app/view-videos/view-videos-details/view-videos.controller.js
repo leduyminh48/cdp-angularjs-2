@@ -1,6 +1,6 @@
 import RouterReusableCtrl from 'components/router/router-reusable.controller';
 
-export default class ViewRequestCtrl extends RouterReusableCtrl {
+export default class ViewVideosCtrl extends RouterReusableCtrl {
   /*@ngInject*/
   constructor($injector, $scope, toastr) {
     super($injector, $scope);
