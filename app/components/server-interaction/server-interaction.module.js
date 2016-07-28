@@ -47,7 +47,7 @@ export default angular.module('osmServerInteraction', [
     const messages = {
       ERR_SERVER        : $interpolate('Error **{{ code }}** with message **{{ text }}** for server request'),
       ERR_VALIDATION    : $interpolate('Wrong credentials'),
-      ERR_AUTHENTICATION: $interpolate('Session is over or modified, please login once again'),
+      ERR_AUTHENTICATION: $interpolate('Incorrect login information'),
       ERR_NOT_FOUND     : $interpolate('Resource **{{ resource }}** was not found on the server'),
       ERR_APPLICATION   : $interpolate('Reason: {{ details }}'),
       ERR_ACCESS        : $interpolate('You are not allowed to access **{{ resource }}**')

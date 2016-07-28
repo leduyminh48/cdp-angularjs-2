@@ -9,6 +9,7 @@ export default class extends RouterReusableCtrl {
     this.$log              = $injector.get('$log');
     this.authenticationFct = $injector.get('authenticationFct');
     this.modalsFct         = $injector.get('modalsFct');
+    this.currentUser       = this.authenticationFct.getCurrentUser();
 
     this.$routerOnActivate();
   }
