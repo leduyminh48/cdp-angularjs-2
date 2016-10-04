@@ -24,19 +24,19 @@ export default /*@ngInject*/$resource => {
      * @class
      * @extends $resource
      *
-     * @description Employee model. Is returned by EmployeesFct
+     * @description Video model.
      */
 
     /**
      * @ngdoc method
      * @methodOf Videos.VideosFct
-     * @name Videos.VideosFct#queryAccessible
+     * @name Videos.VideosFct#update
      * @restMethod GET
      *
      * @returns {$resource}
      *
      * @static
-     * @description returns list of employees accessible (not restricted by role)
+     * @description update video
      */
     update: {
       method: 'PUT'

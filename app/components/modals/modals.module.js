@@ -2,6 +2,7 @@ import angular from 'angular';
 import angularUiBootstrap from 'angular-ui-bootstrap';
 
 import modalsService from './modals.service';
+import './modals.less';
 
 /**
  * @ngdocs overview

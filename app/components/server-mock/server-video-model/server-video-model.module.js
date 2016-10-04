@@ -14,7 +14,8 @@ export default angular.module('serverVideos', [ //eslint-disable-line angular/fi
   ngResource
 ])
   .constant('ServerVideosDataConst', ServerVideosData)
-  .factory('ServerVideosFct', /*@ngInject*/ServerVideosDataConst =>
-    new ServerVideos(ServerVideosDataConst))
+  .factory('ServerVideosFct', /*@ngInject*/ServerVideosDataConst => { //eslint-disable-line
+    return new ServerVideos(ServerVideosDataConst);
+  })
   .name;
 

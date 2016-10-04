@@ -11,7 +11,6 @@ import serverInteraction  from './server-interaction';
 import models             from './models';
 import filters            from './filters';
 import layouts            from './layouts';
-import logout             from './logout';
 import serverMock         from './server-mock';
 
 export default angular.module('osmComponents', [
@@ -26,7 +25,6 @@ export default angular.module('osmComponents', [
   models,
 
   modals,
-  layouts,
-  logout
+  layouts
 ])
   .name;
